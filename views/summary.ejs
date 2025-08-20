@@ -1,0 +1,114 @@
+
+<%- include('./partials/header'); %>
+
+<main class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-100 text-gray-900 py-12">
+
+  <div class="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+   
+    <header class="text-center mb-12">
+      <h1 class="text-4xl sm:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+        CV Analysis Report
+      </h1>
+      <p class="text-gray-600 mt-3 text-lg">A personalized breakdown of your career profile</p>
+    </header>
+
+    <div class="space-y-10">
+
+      
+      <div class="backdrop-blur-lg bg-white/70 border border-gray-200 shadow-xl p-8 rounded-2xl hover:shadow-2xl transition-shadow">
+        <h2 class="flex items-center text-2xl font-semibold mb-5 text-indigo-700">
+          <i class="lucide-file-text w-6 h-6 mr-2"></i> Professional Summary
+        </h2>
+        <p class="text-gray-700 leading-relaxed text-lg"><%= summary %></p>
+      </div>
+
+      
+      <% if (experience && experience.length > 0) { %>
+        <div class="backdrop-blur-lg bg-white/70 border border-gray-200 shadow-xl p-8 rounded-2xl">
+          <h2 class="flex items-center text-2xl font-semibold mb-5 text-indigo-700">
+            <i class="lucide-briefcase w-6 h-6 mr-2"></i> Work Experience
+          </h2>
+          <% experience.forEach(exp => { %>
+            <div class="mb-6 last:mb-0 p-5 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
+              <p class="font-bold text-lg text-indigo-700"><%= exp.title %></p>
+              <p class="text-gray-600 font-medium"><%= exp.company %></p>
+              <p class="text-sm text-gray-700 mt-3 leading-relaxed"><%= exp.description %></p>
+            </div>
+          <% }); %>
+        </div>
+        <% } %>
+
+
+      <% if (projects && projects.length > 0) { %>
+       
+       <div class="backdrop-blur-lg bg-white/70 border border-gray-200 shadow-xl p-8 rounded-2xl">
+         <h2 class="flex items-center text-2xl font-semibold mb-5 text-indigo-700">
+           <i class="lucide-layers w-6 h-6 mr-2"></i> Projects
+         </h2>
+         <div class="space-y-4">
+           <% projects.forEach(proj => { %>
+             <div class="p-5 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
+               <p class="font-bold text-lg text-indigo-700"><%= proj.name %></p>
+               <p class="text-gray-700 text-sm mt-2"><%= proj.description %></p>
+             </div>
+           <% }); %>
+         </div>
+       </div>
+       <% } %>
+
+
+
+      
+      <div class="backdrop-blur-lg bg-white/70 border border-gray-200 shadow-xl p-8 rounded-2xl">
+        <h2 class="flex items-center text-2xl font-semibold mb-5 text-indigo-700">
+          <i class="lucide-graduation-cap w-6 h-6 mr-2"></i> Education
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <% if (education && education.length > 0) { %>
+            <% education.forEach(edu => { %>
+              <div class="p-5 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-gray-200 shadow-sm">
+                <p class="font-bold text-lg text-indigo-700"><%= edu.degree %></p>
+                <p class="text-gray-600"><%= edu.institution %></p>
+                <% if (edu.year) { %>
+                  <p class="text-sm text-gray-500 mt-2"><%= edu.year %></p>
+                <% } %>
+              </div>
+            <% }); %>
+          <% } else { %>
+            <p class="text-gray-500 italic">No education details found.</p>
+          <% } %>
+        </div>
+      </div>
+
+      
+      <div class="backdrop-blur-lg bg-white/70 border border-gray-200 shadow-xl p-8 rounded-2xl">
+        <h2 class="flex items-center text-2xl font-semibold mb-5 text-indigo-700">
+          <i class="lucide-code w-6 h-6 mr-2"></i> Tech Stack & Skills
+        </h2>
+        <div class="flex flex-wrap gap-3">
+          <% if (techStack && techStack.length > 0) { %>
+            <% techStack.forEach(tech => { %>
+              <span class="px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-800 shadow-sm hover:shadow-md transition">
+                <%= tech %>
+              </span>
+            <% }); %>
+          <% } else { %>
+            <p class="text-gray-500 italic">No technical skills found.</p>
+          <% } %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-14">
+      <a href="/upload" class="inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transform transition">
+        Upload Another Document
+      </a>
+    </div>
+
+  </div>
+
+</main>
+
+<%- include('./partials/footer'); %>
